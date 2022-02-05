@@ -1,4 +1,4 @@
-from augment import augmentation_train, augmentation_test
+from data.augment import augmentation_train, augmentation_test
 from torchvision.datasets import ImageFolder
 from torch.utils.data import DataLoader, Dataset
 from PIL import Image
@@ -84,10 +84,3 @@ def get_loader(ds, batch_size, shuffle=True, **kwargs):
         kwargs['shuffle'] = shuffle
         return DataLoader(**kwargs)
     return DataLoader(ds, batch_size, shuffle)
-
-
-if __name__ == "__main__":
-    import matplotlib.pyplot as plt
-    demo_sample, demo_label = get_ds('train')[0]
-    plt.imshow(demo_sample.permute(1, 2, 0))
-    plt.show()

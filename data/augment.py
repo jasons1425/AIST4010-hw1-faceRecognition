@@ -1,4 +1,4 @@
-from preprocess import CorrectionFilterEqualize
+from data.preprocess import CorrectionFilterEqualize
 import numpy as np
 from torchvision import transforms
 from PIL import Image
@@ -7,7 +7,7 @@ import torch
 
 # Augmentation for training set
 #   (preprocessing) -> horizontal flip -> random crop (and resize) -> color jitter
-def augmentation_train(self, crop_size, resize=0, preprocess=True, preprocess_arg=None):
+def augmentation_train(crop_size, resize=0, preprocess=True, preprocess_arg=None):
     augment_stack = []
     if preprocess:
         if preprocess_arg:
@@ -26,7 +26,7 @@ def augmentation_train(self, crop_size, resize=0, preprocess=True, preprocess_ar
 
 # Augmentation for test/validation set
 #   (preprocessing) -> FiveCrop (and resize)
-def augmentation_test(self, crop_size, resize=0, preprocess=True, preprocess_arg=None):
+def augmentation_test(crop_size, resize=0, preprocess=True, preprocess_arg=None):
     augment_stack = []
     if preprocess:
         if preprocess_arg:
