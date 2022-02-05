@@ -57,17 +57,24 @@ for idx, img_fp in enumerate(TEST_FILES):
 
 # the below objects are expected to be imported in model
 # train dataset
-train_ds = ImageFolder(TRAIN_FILES,
-                       transform=augmentation_train(CROP_SIZE, ORIGIN_SIZE),
-                       target_transform=torch.tensor)
-# validation dataset
-val_ds = ImageFolder(VAL_FILES,
-                     transform=augmentation_test(CROP_SIZE, ORIGIN_SIZE),
-                     target_transform=torch.tensor)
-# test dataset
-test_ds = FaceDataset(test_imgs,
-                      img_id=test_img_ids,
-                      transform=augmentation_test)
+def get_ds(phase, resize=None):
+    resize = ORIGIN_SIZE if resize is None else resize
+    if phase == 'train':
+        train_ds = ImageFolder(TRAIN_FILES,
+                               transform=augmentation_train(CROP_SIZE, resize),
+                               target_transform=torch.tensor)
+        return train_ds
+    if phase == 'val':
+        val_ds = ImageFolder(VAL_FILES,
+                             transform=augmentation_test(CROP_SIZE, resize),
+                             target_transform=torch.tensor)
+        return val_ds
+    if phase == 'test':
+        test_ds = FaceDataset(test_imgs,
+                              img_id=test_img_ids,
+                              transform=augmentation_test(CROP_SIZE, resize))
+        return test_ds
+    raise NotImplementedError('Unknown phase!')
 
 
 def get_loader(ds, batch_size, shuffle=True, **kwargs):
@@ -81,6 +88,6 @@ def get_loader(ds, batch_size, shuffle=True, **kwargs):
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
-    demo_sample, demo_label = train_ds[0]
+    demo_sample, demo_label = get_ds('train')[0]
     plt.imshow(demo_sample.permute(1, 2, 0))
     plt.show()
