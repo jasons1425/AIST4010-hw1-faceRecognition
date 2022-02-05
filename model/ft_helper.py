@@ -1,13 +1,8 @@
 # referenced from https://pytorch.org/tutorials/beginner/finetuning_torchvision_models_tutorial.html
 import torch
 import torch.nn as nn
-import torch.optim as optim
-import numpy as np
-import torchvision
-from torchvision import datasets, models, transforms
-import matplotlib.pyplot as plt
+from torchvision import models
 import time
-import os
 import copy
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -35,11 +30,15 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=25, is_ince
                 model.eval()   # Set model to evaluate mode
 
             running_loss = 0.0
-            running_corrects = 0
+            top1_corrects = 0
+            top5_corrects = 0
 
             # Iterate over data.
-            for inputs, labels in dataloaders['train']:
-                inputs = inputs.to(device)
+            for inputs, labels in dataloaders[phase]:
+                if phase == 'train':
+                    inputs = inputs.to(device)
+                else:
+                    inputs = [img_crop_batch.to(device) for img_crop_batch in inputs]
                 labels = labels.to(device)
 
                 # zero the parameter gradients
@@ -58,11 +57,22 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=25, is_ince
                         loss1 = criterion(outputs, labels)
                         loss2 = criterion(aux_outputs, labels)
                         loss = loss1 + 0.4*loss2
+                    # as FiveCrop are used for val_ds, special eval steps are required
+                    elif phase == 'val':
+                        tl, tr, bl, br, ct = inputs
+                        outputs_tl = model(tl)
+                        outputs_tr = model(tr)
+                        outputs_bl = model(bl)
+                        outputs_br = model(br)
+                        outputs_ct = model(ct)
+                        # as the center crop usually captures the key element of the face, it deserves greater weight
+                        outputs = 0.4 * outputs_ct + 0.15 * (outputs_tl + outputs_tr + outputs_bl + outputs_br)
+                        loss = criterion(outputs, labels)
                     else:
                         outputs = model(inputs)
                         loss = criterion(outputs, labels)
 
-                    _, preds = torch.max(outputs, 1)
+                    _, preds = torch.topk(outputs, 5, dim=1)
 
                     # backward + optimize only if in training phase
                     if phase == 'train':
@@ -70,20 +80,25 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=25, is_ince
                         optimizer.step()
 
                 # statistics
-                running_loss += loss.item() * inputs.size(0)
-                running_corrects += torch.sum(preds == labels.data)
+                if phase == 'train':
+                    running_loss += loss.item() * inputs.size(0)
+                else:
+                    running_loss += loss.item() * inputs[0].size(0)
+                top1_corrects += torch.sum(preds[:, 0] == labels.data)
+                top5_corrects += torch.sum(preds == labels.unsqueeze(1))
 
             epoch_loss = running_loss / len(dataloaders[phase].dataset)
-            epoch_acc = running_corrects.double() / len(dataloaders[phase].dataset)
+            epoch_top1acc = top1_corrects.double() / len(dataloaders[phase].dataset)
+            epoch_top5acc = top5_corrects.double() / len(dataloaders[phase].dataset)
 
-            print('{} Loss: {:.4f} Acc: {:.4f}'.format(phase, epoch_loss, epoch_acc))
+            print(f'{phase} Loss: {epoch_loss:.4f}  Top-1 Acc: {epoch_top1acc:.4f}  Top-5 Acc: {epoch_top5acc:.4f}')
 
             # deep copy the model
-            if phase == 'val' and epoch_acc > best_acc:
-                best_acc = epoch_acc
+            if phase == 'val' and epoch_top1acc > best_acc:
+                best_acc = epoch_top1acc
                 best_model_wts = copy.deepcopy(model.state_dict())
             if phase == 'val':
-                val_acc_history.append(epoch_acc)
+                val_acc_history.append((epoch_top1acc, epoch_top5acc))
 
         print()
 
