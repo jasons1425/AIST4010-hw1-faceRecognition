@@ -12,7 +12,7 @@ if __name__ == "__main__":
     CROP_SIZE = 32
     train_ds = get_ds('train', transformation=augmentation_train(CROP_SIZE, IMG_RESIZE))
     train_loader = get_loader(train_ds, BATCH_SIZE, shuffle=True)
-    val_ds = get_ds('val', transformation=augmentation_test(CROP_SIZE, IMG_RESIZE))  # inception expects (299, 299) sized img
+    val_ds = get_ds('val', transformation=augmentation_test(CROP_SIZE, IMG_RESIZE))
     val_loader = get_loader(val_ds, BATCH_SIZE, shuffle=True)
     dataloaders = {'train':  train_loader, 'val': val_loader}
 
