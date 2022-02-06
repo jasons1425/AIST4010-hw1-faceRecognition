@@ -8,7 +8,7 @@ import torchvision
 
 if __name__ == "__main__":
     # data preparation
-    BATCH_SIZE = 128
+    BATCH_SIZE = 64
     IMG_RESIZE = 299 # inception expects (299, 299) sized img
     train_ds = get_ds('train', IMG_RESIZE)
     train_loader = get_loader(train_ds, BATCH_SIZE, shuffle=True)
@@ -19,17 +19,17 @@ if __name__ == "__main__":
     # get pretrained model
     NUM_OF_CLASSES = 1000
     model_name = "inception"
-    model_ft, input_size = initialize_model(model_name, NUM_OF_CLASSES, feature_extract=True)
+    model_ft, input_size = initialize_model(model_name, NUM_OF_CLASSES, feature_extract=False, use_pretrained=False)
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     model_ft = model_ft.to(device)
 
     # get training settings
     criterion = nn.CrossEntropyLoss()
-    optimizer = config_optim(optim.RMSprop, model_ft=model_ft,  feature_extract=True,
-                             lr=0.1, momentum=0.9, weight_decay=0.01)
+    optimizer = config_optim(optim.SGD, model_ft=model_ft,  feature_extract=False,
+                             lr=0.001, momentum=0.9, weight_decay=0.01)
 
     # train the model
-    epochs = 10
+    epochs = 40
     model_ft, hist = train_model(model_ft, dataloaders, criterion,
                                  optimizer, num_epochs=epochs,
                                  is_inception=(model_name == "inception"))
