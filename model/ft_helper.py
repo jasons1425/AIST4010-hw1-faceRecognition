@@ -87,11 +87,14 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=25, is_ince
                 top1_corrects += torch.sum(preds[:, 0] == labels.data)
                 top5_corrects += torch.sum(preds == labels.unsqueeze(1))
 
-            epoch_loss = running_loss / len(dataloaders[phase].dataset)
-            epoch_top1acc = top1_corrects.double() / len(dataloaders[phase].dataset)
-            epoch_top5acc = top5_corrects.double() / len(dataloaders[phase].dataset)
+            dataset_size = len(dataloaders[phase].dataset)
+            epoch_loss = running_loss / dataset_size
+            epoch_top1acc = top1_corrects.double() / dataset_size
+            epoch_top5acc = top5_corrects.double() / dataset_size
 
-            print(f'{phase} Loss: {epoch_loss:.4f}  Top-1 Acc: {epoch_top1acc:.4f}  Top-5 Acc: {epoch_top5acc:.4f}')
+            print(f'{phase} Loss: {epoch_loss:.4f}  '
+                  f'Top-1 Acc: {epoch_top1acc:.4f} ({top1_corrects.double()}/{dataset_size}) '
+                  f'Top-5 Acc: {epoch_top5acc:.4f} ({top5_corrects.double()}/{dataset_size}) ')
 
             # deep copy the model
             if phase == 'val' and epoch_top1acc > best_acc:
