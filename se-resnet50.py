@@ -10,11 +10,11 @@ import torch
 if __name__ == "__main__":
     # data preparation
     BATCH_SIZE = 64
-    IMG_RESIZE = 224 # inception expects (299, 299) sized img
+    IMG_RESIZE = 224
     CROP_SIZE = 32
-    train_ds = get_ds('train', transformation=augmentation_train(CROP_SIZE, IMG_RESIZE, preprocess=False))
+    train_ds = get_ds('train', transformation=augmentation_train(CROP_SIZE, IMG_RESIZE, preprocess=True))
     train_loader = get_loader(train_ds, BATCH_SIZE, shuffle=True)
-    val_ds = get_ds('val', transformation=augmentation_test(CROP_SIZE, IMG_RESIZE, preprocess=False))
+    val_ds = get_ds('val', transformation=augmentation_test(CROP_SIZE, IMG_RESIZE, preprocess=True))
     val_loader = get_loader(val_ds, BATCH_SIZE, shuffle=True)
     dataloaders = {'train':  train_loader, 'val': val_loader}
 
