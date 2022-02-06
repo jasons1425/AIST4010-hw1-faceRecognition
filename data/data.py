@@ -57,22 +57,24 @@ for idx, img_fp in enumerate(TEST_FILES):
 
 # the below objects are expected to be imported in model
 # train dataset
-def get_ds(phase, resize=None):
-    resize = ORIGIN_SIZE if resize is None else resize
+def get_ds(phase, transformation=None):
+    if transformation is None:
+        transformation = augmentation_train if phase == "train" else augmentation_test
+        transformation = transformation(CROP_SIZE, ORIGIN_SIZE)
     if phase == 'train':
         train_ds = ImageFolder(TRAIN_FILES,
-                               transform=augmentation_train(CROP_SIZE, resize),
+                               transform=transformation,
                                target_transform=torch.tensor)
         return train_ds
     if phase == 'val':
         val_ds = ImageFolder(VAL_FILES,
-                             transform=augmentation_test(CROP_SIZE, resize),
+                             transform=transformation,
                              target_transform=torch.tensor)
         return val_ds
     if phase == 'test':
         test_ds = FaceDataset(test_imgs,
                               img_id=test_img_ids,
-                              transform=augmentation_test(CROP_SIZE, resize))
+                              transform=transformation)
         return test_ds
     raise NotImplementedError('Unknown phase!')
 
