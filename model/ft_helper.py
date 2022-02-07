@@ -8,9 +8,25 @@ import copy
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 
+# special forward function for fivecrop-ed data
+# use in validation
+def fivecrop_forward(inputs, model, weights_ratio=[0.15, 0.15, 0.15, 0.15, 0.4]):
+    tl, tr, bl, br, ct = inputs
+    outputs_tl = model(tl) * weights_ratio[0]
+    outputs_tr = model(tr) * weights_ratio[1]
+    outputs_bl = model(bl) * weights_ratio[2]
+    outputs_br = model(br) * weights_ratio[3]
+    outputs_ct = model(ct) * weights_ratio[4]
+    # as the center crop usually captures the key element of the face, it deserves greater weight
+    outputs = outputs_tl + outputs_tr + outputs_bl + outputs_br + outputs_ct
+    return outputs
+
+
 # train the model wrt to their unique pretrained output shape
 #   notice that the dataloaders is a dictionary like {'train': train_loader, 'val': val_loader}
-def train_model(model, dataloaders, criterion, optimizer, scheduler=None, num_epochs=25, is_inception=False):
+def train_model(model, dataloaders, criterion,
+                optimizer, scheduler=None, val_func=fivecrop_forward,
+                num_epochs=25, is_inception=False):
     since = time.time()
 
     val_acc_history = []
@@ -59,14 +75,7 @@ def train_model(model, dataloaders, criterion, optimizer, scheduler=None, num_ep
                         loss = loss1 + 0.4*loss2
                     # as FiveCrop are used for val_ds, special eval steps are required
                     elif phase == 'val':
-                        tl, tr, bl, br, ct = inputs
-                        outputs_tl = model(tl)
-                        outputs_tr = model(tr)
-                        outputs_bl = model(bl)
-                        outputs_br = model(br)
-                        outputs_ct = model(ct)
-                        # as the center crop usually captures the key element of the face, it deserves greater weight
-                        outputs = 0.4 * outputs_ct + 0.15 * (outputs_tl + outputs_tr + outputs_bl + outputs_br)
+                        outputs = val_func(inputs, model)
                         loss = criterion(outputs, labels)
                     else:
                         outputs = model(inputs)
