@@ -10,7 +10,7 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 # train the model wrt to their unique pretrained output shape
 #   notice that the dataloaders is a dictionary like {'train': train_loader, 'val': val_loader}
-def train_model(model, dataloaders, criterion, optimizer, num_epochs=25, is_inception=False):
+def train_model(model, dataloaders, criterion, optimizer, scheduler=None, num_epochs=25, is_inception=False):
     since = time.time()
 
     val_acc_history = []
@@ -86,6 +86,9 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=25, is_ince
                     running_loss += loss.item() * inputs[0].size(0)
                 top1_corrects += torch.sum(preds[:, 0] == labels.data)
                 top5_corrects += torch.sum(preds == labels.unsqueeze(1))
+
+            if scheduler is not None and phase == "train":
+                scheduler.step()
 
             dataset_size = len(dataloaders[phase].dataset)
             epoch_loss = running_loss / dataset_size
