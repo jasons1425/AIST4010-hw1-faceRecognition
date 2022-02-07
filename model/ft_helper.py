@@ -51,20 +51,17 @@ def train_model(model, dataloaders, criterion,
 
             # Iterate over data.
             for inputs, labels in dataloaders[phase]:
-                if phase == 'train':
-                    if half:
+                if half:
+                    if phase == 'train':
                         inputs = inputs.half().to(device)
                     else:
-                        inputs = inputs.to(device)
-                else:
-                    if half:
                         inputs = [img_crop_batch.half().to(device) for img_crop_batch in inputs]
+                else:
+                    if phase == 'train':
+                        inputs = inputs.to(device)
                     else:
                         inputs = [img_crop_batch.to(device) for img_crop_batch in inputs]
-                if half:
-                    labels = labels.half().to(device)
-                else:
-                    labels = labels.to(device)
+                labels = labels.to(device)  # no need to half the labels
 
                 # zero the parameter gradients
                 optimizer.zero_grad()
