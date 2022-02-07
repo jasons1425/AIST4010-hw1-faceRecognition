@@ -65,11 +65,15 @@ def get_ds(phase, transformation=None):
         train_ds = ImageFolder(TRAIN_FILES,
                                transform=transformation,
                                target_transform=torch.tensor)
+        class_to_idx_dict = train_ds.class_to_idx
+        train_ds.class_to_idx = dict([(str(i), i) for i in range(len(class_to_idx_dict))])
         return train_ds
     if phase == 'val':
         val_ds = ImageFolder(VAL_FILES,
                              transform=transformation,
                              target_transform=torch.tensor)
+        class_to_idx_dict = val_ds.class_to_idx
+        val_ds.class_to_idx = dict([(str(i), i) for i in range(len(class_to_idx_dict))])
         return val_ds
     if phase == 'test':
         test_ds = FaceDataset(test_imgs,
