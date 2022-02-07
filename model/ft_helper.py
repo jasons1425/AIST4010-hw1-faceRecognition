@@ -26,7 +26,7 @@ def fivecrop_forward(inputs, model, weights_ratio=[0.15, 0.15, 0.15, 0.15, 0.4])
 #   notice that the dataloaders is a dictionary like {'train': train_loader, 'val': val_loader}
 def train_model(model, dataloaders, criterion,
                 optimizer, scheduler=None, val_func=fivecrop_forward,
-                num_epochs=25, is_inception=False):
+                num_epochs=25, is_inception=False, half=False):
     since = time.time()
 
     val_acc_history = []
@@ -52,10 +52,19 @@ def train_model(model, dataloaders, criterion,
             # Iterate over data.
             for inputs, labels in dataloaders[phase]:
                 if phase == 'train':
-                    inputs = inputs.to(device)
+                    if half:
+                        inputs = inputs.half().to(device)
+                    else:
+                        inputs = inputs.to(device)
                 else:
-                    inputs = [img_crop_batch.to(device) for img_crop_batch in inputs]
-                labels = labels.to(device)
+                    if half:
+                        inputs = [img_crop_batch.half().to(device) for img_crop_batch in inputs]
+                    else:
+                        inputs = [img_crop_batch.to(device) for img_crop_batch in inputs]
+                if half:
+                    labels = labels.half().to(device)
+                else:
+                    labels = labels.to(device)
 
                 # zero the parameter gradients
                 optimizer.zero_grad()
