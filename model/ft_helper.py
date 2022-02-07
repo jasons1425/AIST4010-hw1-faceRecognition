@@ -74,7 +74,7 @@ def train_model(model, dataloaders, criterion,
                         loss2 = criterion(aux_outputs, labels)
                         loss = loss1 + 0.4*loss2
                     # as FiveCrop are used for val_ds, special eval steps are required
-                    elif phase == 'val':
+                    elif phase == 'val' and val_func:
                         outputs = val_func(inputs, model)
                         loss = criterion(outputs, labels)
                     else:
