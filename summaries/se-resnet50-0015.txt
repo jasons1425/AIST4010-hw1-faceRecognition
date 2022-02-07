@@ -1,0 +1,43 @@
+se-restnet50
+augmentation but no preprocessing
+BATCH_SIZE=64
+CROP_SIZE=32, IMG_RESIZE=224
+SGD optimizer, lr=0.0001, momentum=0.9, weight_decay=0.01
+
+Epoch 0/9
+----------
+train Loss: 6.9068  Top-1 Acc: 0.0017 (161.0/93134) Top-5 Acc: 0.0078 (725.0/93134)
+val Loss: 6.9325  Top-1 Acc: 0.0010 (2.0/2000) Top-5 Acc: 0.0045 (9.0/2000)
+
+Epoch 1/9
+----------
+train Loss: 6.8576  Top-1 Acc: 0.0021 (194.0/93134) Top-5 Acc: 0.0106 (991.0/93134)
+val Loss: 6.9469  Top-1 Acc: 0.0005 (1.0/2000) Top-5 Acc: 0.0045 (9.0/2000)
+
+Epoch 2/9
+----------
+train Loss: 6.8474  Top-1 Acc: 0.0022 (203.0/93134) Top-5 Acc: 0.0108 (1008.0/93134)
+val Loss: 6.9507  Top-1 Acc: 0.0010 (2.0/2000) Top-5 Acc: 0.0045 (9.0/2000)
+
+Epoch 3/9
+----------
+train Loss: 6.8418  Top-1 Acc: 0.0023 (217.0/93134) Top-5 Acc: 0.0117 (1092.0/93134)
+val Loss: 6.9489  Top-1 Acc: 0.0015 (3.0/2000) Top-5 Acc: 0.0055 (11.0/2000)
+
+Epoch 4/9
+----------
+train Loss: 6.8372  Top-1 Acc: 0.0031 (288.0/93134) Top-5 Acc: 0.0118 (1097.0/93134)
+val Loss: 6.9494  Top-1 Acc: 0.0010 (2.0/2000) Top-5 Acc: 0.0065 (13.0/2000)
+
+Epoch 5/9
+----------
+train Loss: 6.8336  Top-1 Acc: 0.0027 (247.0/93134) Top-5 Acc: 0.0122 (1138.0/93134)
+val Loss: 6.9470  Top-1 Acc: 0.0010 (2.0/2000) Top-5 Acc: 0.0060 (12.0/2000)
+
+Epoch 6/9
+----------
+train Loss: 6.8291  Top-1 Acc: 0.0026 (244.0/93134) Top-5 Acc: 0.0130 (1207.0/93134)
+val Loss: 6.9459  Top-1 Acc: 0.0015 (3.0/2000) Top-5 Acc: 0.0070 (14.0/2000)
+
+Epoch 7/9
+----------
