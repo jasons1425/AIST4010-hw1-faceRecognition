@@ -9,9 +9,9 @@ import torch
 
 if __name__ == "__main__":
     # data preparation
-    BATCH_SIZE = 64
+    BATCH_SIZE = 32
     IMG_RESIZE = 224
-    CROP_SIZE = 32
+    CROP_SIZE = 48
     train_ds = get_ds('train', transformation=augmentation_train(CROP_SIZE, IMG_RESIZE, preprocess=False))
     train_loader = get_loader(train_ds, BATCH_SIZE, shuffle=True)
     val_ds = get_ds('val', transformation=augmentation_test(CROP_SIZE, IMG_RESIZE, preprocess=False))
@@ -27,7 +27,7 @@ if __name__ == "__main__":
     # training settings
     criterion = nn.CrossEntropyLoss()
     optimizer = config_optim(optim.SGD, model_ft=model,  feature_extract=False,
-                             lr=0.0001, momentum=0.9, weight_decay=0.01)
+                             lr=0.001, momentum=0.9, weight_decay=0.01)
 
     scheduler = optim.lr_scheduler.StepLR(optimizer, 10, gamma=0.1)
 
