@@ -9,7 +9,7 @@ import torch
 
 if __name__ == "__main__":
     # data preparation
-    BATCH_SIZE = 32
+    BATCH_SIZE = 64
     IMG_RESIZE = 224
     TRAIN_CROP_SIZE, VAL_CROP_SIZE = 48, 48
     train_ds = get_ds('train', transformation=augmentation_train(TRAIN_CROP_SIZE, IMG_RESIZE,
@@ -29,7 +29,7 @@ if __name__ == "__main__":
     # training settings
     criterion = nn.CrossEntropyLoss()
     optimizer = config_optim(optim.SGD, model_ft=model,  feature_extract=False,
-                             lr=0.005, momentum=0.9, weight_decay=0.01)
+                             lr=0.01, momentum=0.9, weight_decay=0.01)
     scheduler = optim.lr_scheduler.StepLR(optimizer, 10, gamma=0.9)
     val_func = lambda inputs, net: fivecrop_forward(inputs, net)
 
