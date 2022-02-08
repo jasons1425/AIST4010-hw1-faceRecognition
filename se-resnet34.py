@@ -29,7 +29,7 @@ if __name__ == "__main__":
     # training settings
     criterion = nn.CrossEntropyLoss()
     optimizer = config_optim(optim.SGD, model_ft=model,  feature_extract=False,
-                             lr=0.001, momentum=0.9, weight_decay=0.01)
+                             lr=0.005, momentum=0.9, weight_decay=0.01)
     scheduler = optim.lr_scheduler.StepLR(optimizer, 10, gamma=0.9)
     val_func = lambda inputs, net: fivecrop_forward(inputs, net)
 
