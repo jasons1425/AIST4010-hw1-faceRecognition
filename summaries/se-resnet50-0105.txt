@@ -1,0 +1,10 @@
+se-restnet50
+no augmentation and no preprocessing
+BATCH_SIZE=32
+CROP_SIZE=48, IMG_RESIZE=224
+epochs = 10
+SGD optimizer, lr=0.001, momentum=0.9, weight_decay=0.01
+
+result is normal for 10 epochs
+the loss is on a decreasing trend for both train and validation,
+but the total performance does not excel the same settings but with augmentation
