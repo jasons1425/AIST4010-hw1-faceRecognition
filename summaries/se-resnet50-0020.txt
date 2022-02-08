@@ -1,0 +1,29 @@
+se-restnet50
+augmentation with preprocessing
+BATCH_SIZE=32
+CROP_SIZE=48, IMG_RESIZE=224
+SGD optimizer, lr=0.001, momentum=0.9, weight_decay=0.01
+
+
+Epoch 0/9
+----------
+train Loss: 6.8911  Top-1 Acc: 0.0022 (209.0/93134) Top-5 Acc: 0.0099 (921.0/93134)
+val Loss: 6.9475  Top-1 Acc: 0.0020 (4.0/2000) Top-5 Acc: 0.0070 (14.0/2000)
+
+Epoch 1/9
+----------
+train Loss: 6.8370  Top-1 Acc: 0.0026 (243.0/93134) Top-5 Acc: 0.0122 (1135.0/93134)
+val Loss: 6.9088  Top-1 Acc: 0.0015 (3.0/2000) Top-5 Acc: 0.0075 (15.0/2000)
+
+Epoch 2/9
+----------
+train Loss: 6.7943  Top-1 Acc: 0.0032 (294.0/93134) Top-5 Acc: 0.0138 (1289.0/93134)
+val Loss: 6.8910  Top-1 Acc: 0.0010 (2.0/2000) Top-5 Acc: 0.0095 (19.0/2000)
+
+Epoch 3/9
+----------
+train Loss: 6.7553  Top-1 Acc: 0.0031 (290.0/93134) Top-5 Acc: 0.0149 (1384.0/93134)
+val Loss: 6.8445  Top-1 Acc: 0.0020 (4.0/2000) Top-5 Acc: 0.0085 (17.0/2000)
+
+Epoch 4/9
+----------

@@ -13,10 +13,10 @@ if __name__ == "__main__":
     IMG_RESIZE = 224
     TRAIN_CROP_SIZE, VAL_CROP_SIZE = 48, 48
     train_ds = get_ds('train', transformation=augmentation_train(TRAIN_CROP_SIZE, IMG_RESIZE,
-                                                                 preprocess=False, no_augment=True))
+                                                                 preprocess=True))
     train_loader = get_loader(train_ds, BATCH_SIZE, shuffle=True)
     val_ds = get_ds('val', transformation=augmentation_test(VAL_CROP_SIZE, IMG_RESIZE,
-                                                            preprocess=False, no_augment=True))
+                                                            preprocess=True))
     val_loader = get_loader(val_ds, BATCH_SIZE, shuffle=True)
     dataloaders = {'train':  train_loader, 'val': val_loader}
 
@@ -38,7 +38,7 @@ if __name__ == "__main__":
     epochs = 10
     cuda.empty_cache()
     model_ft, hist = train_model(model, dataloaders, criterion,
-                                 optimizer, scheduler, val_func=None,
+                                 optimizer, scheduler, val_func=val_func,
                                  num_epochs=epochs, is_inception=False, half=True)
     torch.save(model_ft.state_dict(), f'se-resnet50.pth')
 
