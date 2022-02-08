@@ -1,0 +1,58 @@
+se-restnet34
+augmentation but no preprocessing
+BATCH_SIZE=32
+CROP_SIZE=48, IMG_RESIZE=224
+SGD optimizer, lr=0.001, momentum=0.9, weight_decay=0.01
+
+Epoch 0/9
+----------
+train Loss: 6.8639  Top-1 Acc: 0.0021 (196.0/93134) Top-5 Acc: 0.0098 (911.0/93134)
+val Loss: 6.9176  Top-1 Acc: 0.0010 (2.0/2000) Top-5 Acc: 0.0070 (14.0/2000)
+
+Epoch 1/9
+----------
+train Loss: 6.7602  Top-1 Acc: 0.0041 (380.0/93134) Top-5 Acc: 0.0173 (1612.0/93134)
+val Loss: 6.7933  Top-1 Acc: 0.0045 (9.0/2000) Top-5 Acc: 0.0145 (29.0/2000)
+
+Epoch 2/9
+----------
+train Loss: 6.6327  Top-1 Acc: 0.0060 (562.0/93134) Top-5 Acc: 0.0250 (2327.0/93134)
+val Loss: 6.6661  Top-1 Acc: 0.0075 (15.0/2000) Top-5 Acc: 0.0190 (38.0/2000)
+
+Epoch 3/9
+----------
+train Loss: 6.5182  Top-1 Acc: 0.0076 (711.0/93134) Top-5 Acc: 0.0328 (3054.0/93134)
+val Loss: 6.5527  Top-1 Acc: 0.0060 (12.0/2000) Top-5 Acc: 0.0215 (43.0/2000)
+
+Epoch 4/9
+----------
+train Loss: 6.3517  Top-1 Acc: 0.0103 (960.0/93134) Top-5 Acc: 0.0402 (3740.0/93134)
+val Loss: 6.3574  Top-1 Acc: 0.0055 (11.0/2000) Top-5 Acc: 0.0265 (53.0/2000)
+
+Epoch 5/9
+----------
+train Loss: 6.2015  Top-1 Acc: 0.0120 (1121.0/93134) Top-5 Acc: 0.0485 (4517.0/93134)
+val Loss: 6.4262  Top-1 Acc: 0.0065 (13.0/2000) Top-5 Acc: 0.0230 (46.0/2000)
+
+Epoch 6/9
+----------
+train Loss: 6.0684  Top-1 Acc: 0.0141 (1314.0/93134) Top-5 Acc: 0.0562 (5234.0/93134)
+val Loss: 6.0997  Top-1 Acc: 0.0145 (29.0/2000) Top-5 Acc: 0.0430 (86.0/2000)
+
+Epoch 7/9
+----------
+train Loss: 5.9392  Top-1 Acc: 0.0166 (1546.0/93134) Top-5 Acc: 0.0666 (6199.0/93134)
+val Loss: 6.0775  Top-1 Acc: 0.0100 (20.0/2000) Top-5 Acc: 0.0430 (86.0/2000)
+
+Epoch 8/9
+----------
+train Loss: 5.8063  Top-1 Acc: 0.0201 (1874.0/93134) Top-5 Acc: 0.0771 (7181.0/93134)
+val Loss: 5.9235  Top-1 Acc: 0.0140 (28.0/2000) Top-5 Acc: 0.0590 (118.0/2000)
+
+Epoch 9/9
+----------
+train Loss: 5.6804  Top-1 Acc: 0.0233 (2169.0/93134) Top-5 Acc: 0.0917 (8545.0/93134)
+val Loss: 5.7585  Top-1 Acc: 0.0185 (37.0/2000) Top-5 Acc: 0.0785 (157.0/2000)
+
+Training complete in 67m 54s
+Best val Acc: 0.018500
