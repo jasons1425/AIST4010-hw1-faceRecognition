@@ -55,12 +55,18 @@ def train_model(model, dataloaders, criterion,
                     if phase == 'train':
                         inputs = inputs.half().to(device)
                     else:
-                        inputs = [img_crop_batch.half().to(device) for img_crop_batch in inputs]
+                        if type(inputs) is list:
+                            inputs = [img_crop_batch.half().to(device) for img_crop_batch in inputs]
+                        else:
+                            inputs = inputs.half().to(device)
                 else:
                     if phase == 'train':
                         inputs = inputs.to(device)
                     else:
-                        inputs = [img_crop_batch.to(device) for img_crop_batch in inputs]
+                        if type(inputs) is list:
+                            inputs = [img_crop_batch.to(device) for img_crop_batch in inputs]
+                        else:
+                            inputs = inputs.to(device)
                 labels = labels.to(device)  # no need to half the labels
 
                 # zero the parameter gradients
@@ -98,7 +104,10 @@ def train_model(model, dataloaders, criterion,
                 if phase == 'train':
                     running_loss += loss.item() * inputs.size(0)
                 else:
-                    running_loss += loss.item() * inputs[0].size(0)
+                    if type(inputs) is list:
+                        running_loss += loss.item() * inputs[0].size(0)
+                    else:
+                        running_loss += loss.item() * inputs.size(0)
                 top1_corrects += torch.sum(preds[:, 0] == labels.data)
                 top5_corrects += torch.sum(preds == labels.unsqueeze(1))
 
