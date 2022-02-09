@@ -1,0 +1,44 @@
+vggface 2,2,3,3,3
+augmentation with processing
+epoch = 7
+BATCH_SIZE=64
+CROP_SIZE=48, IMG_RESIZE=224
+Adam optimizer, lr=0.001, weight_decay=0.01
+
+Epoch 0/19
+----------
+train Loss: nan  Top-1 Acc: 0.0005 (42.0/93134) Top-5 Acc: 0.0043 (399.0/93134)
+val Loss: nan  Top-1 Acc: 0.0010 (2.0/2000) Top-5 Acc: 0.0050 (10.0/2000)
+
+Epoch 1/19
+----------
+train Loss: nan  Top-1 Acc: 0.0005 (42.0/93134) Top-5 Acc: 0.0043 (400.0/93134)
+val Loss: nan  Top-1 Acc: 0.0010 (2.0/2000) Top-5 Acc: 0.0050 (10.0/2000)
+
+Epoch 2/19
+----------
+train Loss: nan  Top-1 Acc: 0.0005 (42.0/93134) Top-5 Acc: 0.0043 (400.0/93134)
+val Loss: nan  Top-1 Acc: 0.0010 (2.0/2000) Top-5 Acc: 0.0050 (10.0/2000)
+
+Epoch 3/19
+----------
+train Loss: nan  Top-1 Acc: 0.0005 (42.0/93134) Top-5 Acc: 0.0043 (400.0/93134)
+val Loss: nan  Top-1 Acc: 0.0010 (2.0/2000) Top-5 Acc: 0.0050 (10.0/2000)
+
+Epoch 4/19
+----------
+train Loss: nan  Top-1 Acc: 0.0005 (42.0/93134) Top-5 Acc: 0.0043 (400.0/93134)
+val Loss: nan  Top-1 Acc: 0.0010 (2.0/2000) Top-5 Acc: 0.0050 (10.0/2000)
+
+Epoch 5/19
+----------
+train Loss: nan  Top-1 Acc: 0.0005 (42.0/93134) Top-5 Acc: 0.0043 (400.0/93134)
+val Loss: nan  Top-1 Acc: 0.0010 (2.0/2000) Top-5 Acc: 0.0050 (10.0/2000)
+
+Epoch 6/19
+----------
+train Loss: nan  Top-1 Acc: 0.0005 (42.0/93134) Top-5 Acc: 0.0043 (400.0/93134)
+val Loss: nan  Top-1 Acc: 0.0010 (2.0/2000) Top-5 Acc: 0.0050 (10.0/2000)
+
+Epoch 7/19
+----------
