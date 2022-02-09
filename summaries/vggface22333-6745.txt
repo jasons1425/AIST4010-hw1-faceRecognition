@@ -1,0 +1,59 @@
+vggface 2,2,3,3,3
+augmentation but no preprocessing
+epoch = (10 + 20) + 10 (loaded previously model pretrained in same settings for 10 and 20 epochs)
+BATCH_SIZE=32
+CROP_SIZE=48, IMG_RESIZE=224
+SGD optimizer, lr=0.00025, momentum=0.9, weight_decay=0.01
+
+Epoch 0/9
+----------
+train Loss: 1.1538  Top-1 Acc: 0.7196 (67015.0/93134) Top-5 Acc: 0.8919 (83070.0/93134)
+val Loss: 1.6287  Top-1 Acc: 0.6265 (1253.0/2000) Top-5 Acc: 0.8290 (1658.0/2000)
+
+Epoch 1/9
+----------
+train Loss: 1.1434  Top-1 Acc: 0.7203 (67088.0/93134) Top-5 Acc: 0.8929 (83163.0/93134)
+val Loss: 1.6439  Top-1 Acc: 0.6290 (1258.0/2000) Top-5 Acc: 0.8295 (1659.0/2000)
+
+Epoch 2/9
+----------
+train Loss: 1.1316  Top-1 Acc: 0.7234 (67376.0/93134) Top-5 Acc: 0.8941 (83268.0/93134)
+val Loss: 1.5341  Top-1 Acc: 0.6510 (1302.0/2000) Top-5 Acc: 0.8380 (1676.0/2000)
+
+Epoch 3/9
+----------
+train Loss: 1.1188  Top-1 Acc: 0.7266 (67667.0/93134) Top-5 Acc: 0.8953 (83383.0/93134)
+val Loss: 1.5778  Top-1 Acc: 0.6530 (1306.0/2000) Top-5 Acc: 0.8340 (1668.0/2000)
+
+Epoch 4/9
+----------
+train Loss: 1.1054  Top-1 Acc: 0.7278 (67787.0/93134) Top-5 Acc: 0.8979 (83626.0/93134)
+val Loss: 1.5815  Top-1 Acc: 0.6505 (1301.0/2000) Top-5 Acc: 0.8345 (1669.0/2000)
+
+Epoch 5/9
+----------
+train Loss: 1.0984  Top-1 Acc: 0.7305 (68034.0/93134) Top-5 Acc: 0.8963 (83475.0/93134)
+val Loss: 1.4679  Top-1 Acc: 0.6745 (1349.0/2000) Top-5 Acc: 0.8490 (1698.0/2000)
+
+Epoch 6/9
+----------
+train Loss: 1.0828  Top-1 Acc: 0.7328 (68248.0/93134) Top-5 Acc: 0.8990 (83727.0/93134)
+val Loss: 1.5253  Top-1 Acc: 0.6590 (1318.0/2000) Top-5 Acc: 0.8340 (1668.0/2000)
+
+Epoch 7/9
+----------
+train Loss: 1.0764  Top-1 Acc: 0.7331 (68272.0/93134) Top-5 Acc: 0.9005 (83865.0/93134)
+val Loss: 1.5328  Top-1 Acc: 0.6655 (1331.0/2000) Top-5 Acc: 0.8350 (1670.0/2000)
+
+Epoch 8/9
+----------
+train Loss: 1.0686  Top-1 Acc: 0.7353 (68478.0/93134) Top-5 Acc: 0.9021 (84018.0/93134)
+val Loss: 1.5632  Top-1 Acc: 0.6355 (1271.0/2000) Top-5 Acc: 0.8310 (1662.0/2000)
+
+Epoch 9/9
+----------
+train Loss: 1.0592  Top-1 Acc: 0.7374 (68676.0/93134) Top-5 Acc: 0.9029 (84089.0/93134)
+val Loss: 1.5217  Top-1 Acc: 0.6500 (1300.0/2000) Top-5 Acc: 0.8405 (1681.0/2000)
+
+Training complete in 180m 47s
+Best val Acc: 0.674500
