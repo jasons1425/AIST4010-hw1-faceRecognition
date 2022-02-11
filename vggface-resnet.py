@@ -34,7 +34,7 @@ if __name__ == "__main__":
     val_func = lambda inputs, net: fivecrop_forward(inputs, net)
 
     # train the model
-    epochs = 10
+    epochs = 20
     cuda.empty_cache()
     model_ft, hist = train_model(model, dataloaders, criterion,
                                  optimizer, scheduler, val_func=val_func,
