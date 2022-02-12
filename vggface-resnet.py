@@ -24,7 +24,7 @@ if __name__ == "__main__":
     NUM_OF_CLASSES = 1000
     model = VGGFaceResNet(3, NUM_OF_CLASSES)
     device = 'cuda' if cuda.is_available() else 'cpu'
-    model.load_state_dict(torch.load(r"trials/vggface-resnet-3590.pth"))
+    model.load_state_dict(torch.load(r"trials/vggface-resnet-4235.pth"))
     model = model.half().to(device)
 
     # training settings
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     val_func = lambda inputs, net: fivecrop_forward(inputs, net)
 
     # train the model
-    epochs = 5
+    epochs = 10
     cuda.empty_cache()
     model_ft, hist = train_model(model, dataloaders, criterion,
                                  optimizer, scheduler=None, val_func=val_func,
