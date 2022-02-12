@@ -24,13 +24,14 @@ if __name__ == "__main__":
     NUM_OF_CLASSES = 1000
     model = VGGFaceResNet(3, NUM_OF_CLASSES)
     device = 'cuda' if cuda.is_available() else 'cpu'
+    model.load_state_dict(torch.load(r"trials/vggface-resnet-4195.pth"))
     model = model.half().to(device)
 
     # training settings
     criterion = nn.CrossEntropyLoss()
     optimizer = config_optim(optim.SGD, model_ft=model,  feature_extract=False,
-                             lr=0.001, momentum=0.9, weight_decay=0.01)
-    scheduler = optim.lr_scheduler.StepLR(optimizer, 10, gamma=0.1)
+                             lr=0.0001, momentum=0.9, weight_decay=0.01)
+    scheduler = optim.lr_scheduler.StepLR(optimizer, 5, gamma=0.5)
     val_func = lambda inputs, net: fivecrop_forward(inputs, net)
 
     # train the model
