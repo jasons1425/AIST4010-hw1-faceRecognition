@@ -1,0 +1,34 @@
+vggface-resnet 2,2,3,3,3
+augmentation without preprocessing
+epoch = (20 + 5 + 10 + 30) + 5 (pretrained on 7635 model)
+BATCH_SIZE=32
+CROP_SIZE=48, IMG_RESIZE=224
+SGD optimizer, lr=1e-6, momentum=0.9, weight_decay=0.01
+
+Epoch 0/4
+----------
+train Loss: 0.2365  Top-1 Acc: 0.9469 (88193.0/93134) Top-5 Acc: 0.9911 (92308.0/93134)
+val Loss: 1.0415  Top-1 Acc: 0.7560 (1512.0/2000) Top-5 Acc: 0.8995 (1799.0/2000)
+
+Epoch 1/4
+----------
+train Loss: 0.2369  Top-1 Acc: 0.9459 (88095.0/93134) Top-5 Acc: 0.9910 (92299.0/93134)
+val Loss: 1.0444  Top-1 Acc: 0.7635 (1527.0/2000) Top-5 Acc: 0.8985 (1797.0/2000)
+
+Epoch 2/4
+----------
+train Loss: 0.2362  Top-1 Acc: 0.9469 (88188.0/93134) Top-5 Acc: 0.9909 (92287.0/93134)
+val Loss: 1.0438  Top-1 Acc: 0.7620 (1524.0/2000) Top-5 Acc: 0.8985 (1797.0/2000)
+
+Epoch 3/4
+----------
+train Loss: 0.2368  Top-1 Acc: 0.9457 (88078.0/93134) Top-5 Acc: 0.9914 (92330.0/93134)
+val Loss: 1.0376  Top-1 Acc: 0.7575 (1515.0/2000) Top-5 Acc: 0.8945 (1789.0/2000)
+
+Epoch 4/4
+----------
+train Loss: 0.2381  Top-1 Acc: 0.9455 (88057.0/93134) Top-5 Acc: 0.9911 (92303.0/93134)
+val Loss: 1.0434  Top-1 Acc: 0.7615 (1523.0/2000) Top-5 Acc: 0.8970 (1794.0/2000)
+
+Training complete in 155m 51s
+Best val Acc: 0.763500
