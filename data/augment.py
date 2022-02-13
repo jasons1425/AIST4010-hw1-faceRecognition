@@ -23,6 +23,7 @@ def augmentation_train(crop_size=32, resize=0, preprocess=True, preprocess_arg=N
     elif resize:
         augment_stack.append(transforms.Resize(resize))
     augment_stack.append(transforms.ToTensor())
+    augment_stack.append(transforms.RandomErasing(0.5, [0.25, 0.5], [0.5, 1.0]))
 
     return transforms.Compose(augment_stack)
 
