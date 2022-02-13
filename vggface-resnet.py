@@ -30,14 +30,14 @@ if __name__ == "__main__":
     # training settings
     criterion = nn.CrossEntropyLoss()
     optimizer = config_optim(optim.SGD, model_ft=model,  feature_extract=False,
-                             lr=1e-6, momentum=0.9, weight_decay=0.01)
+                             lr=0.00001, momentum=0.9, weight_decay=0.01)
     # scheduler_lambda_func = lambda epoch: 1 if epoch < 5 else (0.1 if epoch < 25 else 0.01)
     # scheduler = optim.lr_scheduler.StepLR(optimizer, 10, gamma=0.1)
     # scheduler = optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=scheduler_lambda_func)
     val_func = lambda inputs, net: fivecrop_forward(inputs, net)
 
     # train the model
-    epochs = 5
+    epochs = 10
     cuda.empty_cache()
     model_ft, hist = train_model(model, dataloaders, criterion,
                                  optimizer, scheduler=None, val_func=val_func,
