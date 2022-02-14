@@ -2,6 +2,7 @@
 import torch
 import torch.nn as nn
 from torchvision import models
+from PIL import Image
 import time
 import copy
 
@@ -237,6 +238,24 @@ def config_optim(optim_class, model_ft, feature_extract=True, **kwargs):
     optimizer_ft = optim_class(**kwargs)
 
     return optimizer_ft
+
+
+IMG_LABELS = sorted([str(i) for i in range(1000)])
+LABELS_TRANSLATOR = dict([(str(idx), int(label)) for idx, label in enumerate(IMG_LABELS)])
+
+
+def evaluation(model, test_img, augment=None):
+    model.eval()
+    if isinstance(test_img, str):  # if is file_path, read the image
+        with Image.open(test_img) as f:
+            test_img = f  # load the PIL image
+    if augment:
+        test_img = augment(test_img)
+    with torch.no_grad():
+        outputs = fivecrop_forward(test_img, model)
+        _, preds = torch.topk(outputs, 1, dim=1)
+        preds = [LABELS_TRANSLATOR[str(pred)] for pred in preds.flatten().tolist()]
+    return preds
 
 
 if __name__ == "__main__":
