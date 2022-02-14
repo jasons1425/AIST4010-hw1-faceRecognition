@@ -133,3 +133,6 @@ dmypy.json
 
 # model
 *.pth
+
+# predictions
+preds.csv
