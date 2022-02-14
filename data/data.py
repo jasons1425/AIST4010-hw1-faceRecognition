@@ -13,6 +13,7 @@ DATA_DIR = r'D:\Documents\datasets\AIST4010\face recognition'
 TRAIN_FILES = os.path.join(DATA_DIR, 'train')
 VAL_FILES = os.path.join(DATA_DIR, 'val')
 TEST_FILES = glob.glob(os.path.join(DATA_DIR, 'test', '*'))
+TEST_FILES.sort(key=lambda fp: int(re.match(r'^.*\\(\d+).jpg$', fp).group(1)))
 
 
 # augmentation settings
@@ -22,10 +23,9 @@ ORIGIN_SIZE, CROP_SIZE = 64, 32
 # test dataset class
 # since the test dataset does not have any class folder, we need to define our own dataset class
 class FaceDataset(Dataset):
-    def __init__(self, data, label=None, img_id=None, transform=None):
+    def __init__(self, data, img_id=None, transform=None):
         super(FaceDataset, self).__init__()
         self.data = data
-        self.label = label if label else [None] * len(data)
         self.img_id = img_id if img_id else [None] * len(data)
         self.transform = transform
 
@@ -38,7 +38,7 @@ class FaceDataset(Dataset):
         sample = self.data[idx]
         if self.transform:
             sample = self.transform(self.data[idx])
-        return sample, self.label[idx], self.img_id[idx]
+        return sample, self.img_id[idx]
 
     def get_data(self, idx=None):
         if idx:
