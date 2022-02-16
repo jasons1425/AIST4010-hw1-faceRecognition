@@ -244,7 +244,8 @@ IMG_LABELS = sorted([str(i) for i in range(1000)])
 LABELS_TRANSLATOR = dict([(str(idx), int(label)) for idx, label in enumerate(IMG_LABELS)])
 
 
-def evaluation(model, test_img, augment=None):
+def evaluation(model, test_img, augment=None,
+               weights_ratio=[0.15, 0.15, 0.15, 0.15, 0.4]):
     model.eval()
     if isinstance(test_img, str):  # if is file_path, read the image
         with Image.open(test_img) as f:
@@ -252,7 +253,7 @@ def evaluation(model, test_img, augment=None):
     if augment:
         test_img = augment(test_img)
     with torch.no_grad():
-        outputs = fivecrop_forward(test_img, model)
+        outputs = fivecrop_forward(test_img, model, weights_ratio=weights_ratio)
         _, preds = torch.topk(outputs, 1, dim=1)
         preds = [LABELS_TRANSLATOR[str(pred)] for pred in preds.flatten().tolist()]
     return preds
