@@ -21,7 +21,7 @@ model.load_state_dict(torch.load(r"trials/vggface-resnet-7675.pth"))
 preds = pd.DataFrame({'id': [], 'label': []})
 for imgs, labels in test_loader:
     imgs = [img.half().to(device) for img in imgs]
-    batch_preds = evaluation(model, imgs)
+    batch_preds = evaluation(model, imgs, weights_ratio=[0.1, 0.1, 0.1, 0.1, 0.6])
     preds = pd.concat([preds, pd.DataFrame({'id': labels, 'label': batch_preds})], ignore_index=True)
 
 
