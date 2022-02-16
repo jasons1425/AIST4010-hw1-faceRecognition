@@ -13,10 +13,10 @@ if __name__ == "__main__":
     IMG_RESIZE = 224
     TRAIN_CROP_SIZE, VAL_CROP_SIZE = 48, 48
     train_ds = get_ds('train', transformation=augmentation_train(TRAIN_CROP_SIZE, IMG_RESIZE,
-                                                                 preprocess=True, normalized=True))
+                                                                 preprocess=False, normalized=True))
     train_loader = get_loader(train_ds, BATCH_SIZE, shuffle=True)
     val_ds = get_ds('val', transformation=augmentation_test(VAL_CROP_SIZE, IMG_RESIZE,
-                                                            preprocess=True, normalized=True))
+                                                            preprocess=False, normalized=True))
     val_loader = get_loader(val_ds, BATCH_SIZE, shuffle=True)
     dataloaders = {'train':  train_loader, 'val': val_loader}
 
@@ -24,13 +24,13 @@ if __name__ == "__main__":
     NUM_OF_CLASSES = 1000
     model = VGGFaceResNet(3, NUM_OF_CLASSES)
     device = 'cuda' if cuda.is_available() else 'cpu'
-    model.load_state_dict(torch.load(r"trials/vggface-resnet-4490.pth"))
+    # model.load_state_dict(torch.load(r"trials/vggface-resnet-4490.pth"))
     model = model.half().to(device)
 
     # training settings
     criterion = nn.CrossEntropyLoss()
     optimizer = config_optim(optim.SGD, model_ft=model,  feature_extract=False,
-                             lr=1e-5, momentum=0.9, weight_decay=0.01)
+                             lr=0.001, momentum=0.9, weight_decay=0.001)
     # scheduler_lambda_func = lambda epoch: 1 if epoch < 5 else (0.1 if epoch < 25 else 0.01)
     # scheduler = optim.lr_scheduler.StepLR(optimizer, 10, gamma=0.1)
     # scheduler = optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=scheduler_lambda_func)
