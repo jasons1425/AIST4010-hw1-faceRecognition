@@ -1,6 +1,6 @@
 vggface-resnet 2,2,3,3,3
 augmentation + randomErasing + Normalization with preprocessing
-epoch = 30
+epoch = 20 + 30 (pretrained on 1410 model)
 BATCH_SIZE=32
 CROP_SIZE=48, IMG_RESIZE=224
 SGD optimizer, lr=0.001, momentum=0.9, weight_decay=0.01
