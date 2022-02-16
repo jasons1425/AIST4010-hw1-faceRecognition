@@ -1,0 +1,9 @@
+vggface-resnet 2,2,3,3,3
+augmentation + randomErasing + Normalization with preprocessing
+epoch = (20 + 30) + 6/10 (pretrained on 4490 model)
+BATCH_SIZE=32
+CROP_SIZE=48, IMG_RESIZE=224
+SGD optimizer, lr=0.00001, momentum=0.9, weight_decay=0.01
+
+The result is not satisfying
+The validation accuracy does not change much during the first 6 of the 10 epochs
