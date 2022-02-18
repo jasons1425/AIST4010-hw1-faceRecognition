@@ -1,8 +1,5 @@
 from data.preprocess import CorrectionFilterEqualize
-import numpy as np
 from torchvision import transforms
-from PIL import Image
-import torch
 
 
 # Augmentation for training set

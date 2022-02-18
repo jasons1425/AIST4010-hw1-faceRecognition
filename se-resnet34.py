@@ -1,7 +1,9 @@
 from model.se_resnet import se_resnet34
 from data.augment import augmentation_train, augmentation_test
 from data.data import get_ds, get_loader
-from model.ft_helper import train_model, config_optim, fivecrop_forward
+from helper.setup import config_optim
+from helper.process import train_model
+from helper.eval import fivecrop_forward
 import torch.cuda as cuda
 import torch.optim as optim
 import torch.nn as nn
@@ -32,7 +34,6 @@ if __name__ == "__main__":
                              lr=0.01, momentum=0.9, weight_decay=0.01)
     scheduler = optim.lr_scheduler.StepLR(optimizer, 10, gamma=0.9)
     val_func = lambda inputs, net: fivecrop_forward(inputs, net)
-
 
     # train the model
     epochs = 10

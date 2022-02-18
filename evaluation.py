@@ -1,6 +1,6 @@
 from data.data import get_ds, get_loader
 from data.augment import augmentation_test
-from model.ft_helper import evaluation
+from helper.eval import evaluation
 from model.vgg_face import VGGFaceResNet
 import pandas as pd
 import torch

@@ -1,7 +1,9 @@
 from model.se_resnet import se_resnet50
 from data.augment import augmentation_train, augmentation_test
 from data.data import get_ds, get_loader
-from model.ft_helper import train_model, config_optim, fivecrop_forward
+from helper.setup import config_optim
+from helper.process import train_model
+from helper.eval import fivecrop_forward
 import torch.cuda as cuda
 import torch.optim as optim
 import torch.nn as nn
@@ -33,7 +35,6 @@ if __name__ == "__main__":
     scheduler = optim.lr_scheduler.StepLR(optimizer, 10, gamma=0.9)
     val_func = lambda inputs, net: fivecrop_forward(inputs, net)
 
-
     # train the model
     epochs = 10
     cuda.empty_cache()
@@ -41,7 +42,3 @@ if __name__ == "__main__":
                                  optimizer, scheduler, val_func=val_func,
                                  num_epochs=epochs, is_inception=False, half=True)
     torch.save(model_ft.state_dict(), f'se-resnet50.pth')
-
-
-
-

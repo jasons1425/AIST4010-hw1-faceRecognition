@@ -1,7 +1,8 @@
 import torch.cuda
 from data.augment import augmentation_train, augmentation_test
 from data.data import get_ds, get_loader
-from model.ft_helper import train_model, initialize_model, config_optim
+from helper.setup import initialize_model, config_optim
+from helper.process import train_model
 import torch.optim as optim
 import torch.nn as nn
 

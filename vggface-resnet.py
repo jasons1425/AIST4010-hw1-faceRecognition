@@ -1,7 +1,9 @@
 from model.vgg_face import VGGFaceResNet
 from data.augment import augmentation_train, augmentation_test
 from data.data import get_ds, get_loader
-from model.ft_helper import train_model, config_optim, fivecrop_forward
+from helper.setup import config_optim
+from helper.process import train_model
+from helper.eval import fivecrop_forward
 import torch.cuda as cuda
 import torch.optim as optim
 import torch.nn as nn

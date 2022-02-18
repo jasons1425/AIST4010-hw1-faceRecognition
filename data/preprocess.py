@@ -2,7 +2,6 @@ import numpy as np
 from torchvision import transforms
 from skimage.filters import difference_of_gaussians
 from PIL import Image
-import torch
 
 
 # Gamma Correction, Difference Of Gaussian Filtering, Contrast Equalization
