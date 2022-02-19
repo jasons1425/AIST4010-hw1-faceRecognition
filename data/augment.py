@@ -16,7 +16,7 @@ def augmentation_train(crop_size=32, resize=0, preprocess=True,
     if not no_augment:
         augment_stack.append(transforms.RandomChoice([
             transforms.RandomCrop(crop_size),
-            transforms.RandomErasing(0.5, [0.25, 0.5], [0.5, 1.0])
+            transforms.RandomErasing(1, [0.1, 0.25], [1.0, 1.0])
         ]))
         augment_stack.append(transforms.RandomHorizontalFlip())
         augment_stack.append(transforms.ColorJitter())
