@@ -12,18 +12,18 @@ def augmentation_train(crop_size=32, resize=0, preprocess=True,
             augment_stack.append(CorrectionFilterEqualize(**preprocess_arg))
         else:
             augment_stack.append(CorrectionFilterEqualize())
-    if not no_augment:
-        augment_stack.append(transforms.RandomHorizontalFlip())
-        augment_stack.append(transforms.RandomCrop(crop_size))
-        if resize:
-            augment_stack.append(transforms.Resize(resize))
-        augment_stack.append(transforms.ColorJitter())
-    elif resize:
-        augment_stack.append(transforms.Resize(resize))
     augment_stack.append(transforms.ToTensor())
+    if not no_augment:
+        augment_stack.append(transforms.RandomChoice([
+            transforms.RandomCrop(crop_size),
+            transforms.RandomErasing(0.5, [0.25, 0.5], [0.5, 1.0])
+        ]))
+        augment_stack.append(transforms.RandomHorizontalFlip())
+        augment_stack.append(transforms.ColorJitter())
+    if resize:
+        augment_stack.append(transforms.Resize(resize))
     if normalized:
         augment_stack.append(transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]))
-    augment_stack.append(transforms.RandomErasing(0.5, [0.25, 0.5], [0.5, 1.0]))
 
     return transforms.Compose(augment_stack)
 
