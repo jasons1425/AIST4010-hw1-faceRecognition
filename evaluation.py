@@ -15,7 +15,7 @@ assert DATA_PATH is not None, "Please fill in the test dataset path!!!"
 # load the dataset
 BATCH_SIZE = 32
 IMG_RESIZE = 224
-CROP_SIZE = 48
+CROP_SIZE = 56
 test_ds = get_ds('test', transformation=augmentation_test(CROP_SIZE, IMG_RESIZE, preprocess=False),
                  test_imgs_fp=DATA_PATH)
 test_loader = get_loader(test_ds, BATCH_SIZE, shuffle=False)
@@ -23,7 +23,7 @@ test_loader = get_loader(test_ds, BATCH_SIZE, shuffle=False)
 # prepare the model
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model = VGGFaceResNet(3, 1000).half().to(device)
-model.load_state_dict(torch.load(r"trials/vggface-resnet-7610.pth"))
+model.load_state_dict(torch.load(r"trials/vggface-resnet-7580.pth"))
 
 # make evaluation
 preds = pd.DataFrame({'id': [], 'label': []})
