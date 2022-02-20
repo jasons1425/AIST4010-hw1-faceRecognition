@@ -1,6 +1,6 @@
 vggface-resnet 2,2,3,3,3
 augmentation + randomErasing (adjusted erase settings) without preprocessing
-epoch = (20 + 5 + 10 + 30 + 10) + 200 (pretrained on 7505 model)
+epoch = (20 + 5 + 10 + 30 + 10) + 20 (pretrained on 7505 model)
 BATCH_SIZE=32
 CROP_SIZE=48, IMG_RESIZE=224
 SGD optimizer, lr=0.00001, momentum=0.9, weight_decay=0.01
