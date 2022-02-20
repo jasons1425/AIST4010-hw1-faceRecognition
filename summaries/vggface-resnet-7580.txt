@@ -1,0 +1,110 @@
+vggface-resnet 2,2,3,3,3
+augmentation + randomErasing (adjusted erase settings) without preprocessing
+epoch = (20 + 5 + 10 + 30 + 10) + 200 (pretrained on 7505 model)
+BATCH_SIZE=32
+CROP_SIZE=48, IMG_RESIZE=224
+SGD optimizer, lr=0.00001, momentum=0.9, weight_decay=0.01
+scheduler_lambda_func = lambda epoch: 1 if epoch < 5 else (0.5 if epoch < 10 else (0.25 if epoch < 15 else 0.1))
+
+Epoch 0/19
+----------
+train Loss: 1.3115  Top-1 Acc: 0.7046 (65624.0/93134) Top-5 Acc: 0.8457 (78759.0/93134)
+val Loss: 1.1004  Top-1 Acc: 0.7475 (1495.0/2000) Top-5 Acc: 0.8985 (1797.0/2000)
+
+Epoch 1/19
+----------
+train Loss: 1.2993  Top-1 Acc: 0.7067 (65819.0/93134) Top-5 Acc: 0.8470 (78889.0/93134)
+val Loss: 1.0997  Top-1 Acc: 0.7480 (1496.0/2000) Top-5 Acc: 0.8990 (1798.0/2000)
+
+Epoch 2/19
+----------
+train Loss: 1.2982  Top-1 Acc: 0.7059 (65743.0/93134) Top-5 Acc: 0.8474 (78926.0/93134)
+val Loss: 1.0930  Top-1 Acc: 0.7480 (1496.0/2000) Top-5 Acc: 0.8995 (1799.0/2000)
+
+Epoch 3/19
+----------
+train Loss: 1.2719  Top-1 Acc: 0.7117 (66279.0/93134) Top-5 Acc: 0.8517 (79318.0/93134)
+val Loss: 1.1000  Top-1 Acc: 0.7490 (1498.0/2000) Top-5 Acc: 0.8975 (1795.0/2000)
+
+Epoch 4/19
+----------
+train Loss: 1.2558  Top-1 Acc: 0.7148 (66574.0/93134) Top-5 Acc: 0.8544 (79575.0/93134)
+val Loss: 1.0917  Top-1 Acc: 0.7530 (1506.0/2000) Top-5 Acc: 0.9010 (1802.0/2000)
+
+Epoch 5/19
+----------
+train Loss: 1.2261  Top-1 Acc: 0.7205 (67102.0/93134) Top-5 Acc: 0.8585 (79953.0/93134)
+val Loss: 1.0843  Top-1 Acc: 0.7490 (1498.0/2000) Top-5 Acc: 0.8990 (1798.0/2000)
+
+Epoch 6/19
+----------
+train Loss: 1.2172  Top-1 Acc: 0.7209 (67139.0/93134) Top-5 Acc: 0.8607 (80158.0/93134)
+val Loss: 1.0706  Top-1 Acc: 0.7550 (1510.0/2000) Top-5 Acc: 0.9030 (1806.0/2000)
+
+Epoch 7/19
+----------
+train Loss: 1.2186  Top-1 Acc: 0.7225 (67293.0/93134) Top-5 Acc: 0.8593 (80029.0/93134)
+val Loss: 1.0803  Top-1 Acc: 0.7580 (1516.0/2000) Top-5 Acc: 0.8995 (1799.0/2000)
+
+Epoch 8/19
+----------
+train Loss: 1.2297  Top-1 Acc: 0.7197 (67033.0/93134) Top-5 Acc: 0.8580 (79910.0/93134)
+val Loss: 1.0909  Top-1 Acc: 0.7535 (1507.0/2000) Top-5 Acc: 0.9005 (1801.0/2000)
+
+Epoch 9/19
+----------
+train Loss: 1.2135  Top-1 Acc: 0.7235 (67386.0/93134) Top-5 Acc: 0.8601 (80100.0/93134)
+val Loss: 1.0822  Top-1 Acc: 0.7550 (1510.0/2000) Top-5 Acc: 0.9010 (1802.0/2000)
+
+Epoch 10/19
+----------
+train Loss: 1.2035  Top-1 Acc: 0.7259 (67610.0/93134) Top-5 Acc: 0.8613 (80214.0/93134)
+val Loss: 1.0771  Top-1 Acc: 0.7530 (1506.0/2000) Top-5 Acc: 0.9020 (1804.0/2000)
+
+Epoch 11/19
+----------
+train Loss: 1.2055  Top-1 Acc: 0.7243 (67453.0/93134) Top-5 Acc: 0.8621 (80294.0/93134)
+val Loss: 1.0785  Top-1 Acc: 0.7545 (1509.0/2000) Top-5 Acc: 0.9015 (1803.0/2000)
+
+Epoch 12/19
+----------
+train Loss: 1.1962  Top-1 Acc: 0.7273 (67740.0/93134) Top-5 Acc: 0.8625 (80332.0/93134)
+val Loss: 1.0769  Top-1 Acc: 0.7555 (1511.0/2000) Top-5 Acc: 0.9005 (1801.0/2000)
+
+Epoch 13/19
+----------
+train Loss: 1.2091  Top-1 Acc: 0.7244 (67466.0/93134) Top-5 Acc: 0.8609 (80178.0/93134)
+val Loss: 1.0824  Top-1 Acc: 0.7545 (1509.0/2000) Top-5 Acc: 0.9040 (1808.0/2000)
+
+Epoch 14/19
+----------
+train Loss: 1.2026  Top-1 Acc: 0.7281 (67815.0/93134) Top-5 Acc: 0.8619 (80271.0/93134)
+val Loss: 1.0786  Top-1 Acc: 0.7560 (1512.0/2000) Top-5 Acc: 0.9025 (1805.0/2000)
+
+Epoch 15/19
+----------
+train Loss: 1.1921  Top-1 Acc: 0.7278 (67781.0/93134) Top-5 Acc: 0.8634 (80414.0/93134)
+val Loss: 1.0762  Top-1 Acc: 0.7535 (1507.0/2000) Top-5 Acc: 0.9010 (1802.0/2000)
+
+Epoch 16/19
+----------
+train Loss: 1.1961  Top-1 Acc: 0.7266 (67671.0/93134) Top-5 Acc: 0.8627 (80346.0/93134)
+val Loss: 1.0767  Top-1 Acc: 0.7540 (1508.0/2000) Top-5 Acc: 0.9015 (1803.0/2000)
+
+Epoch 17/19
+----------
+train Loss: 1.2084  Top-1 Acc: 0.7248 (67504.0/93134) Top-5 Acc: 0.8608 (80168.0/93134)
+val Loss: 1.0816  Top-1 Acc: 0.7535 (1507.0/2000) Top-5 Acc: 0.9035 (1807.0/2000)
+
+Epoch 18/19
+----------
+train Loss: 1.1985  Top-1 Acc: 0.7258 (67597.0/93134) Top-5 Acc: 0.8630 (80379.0/93134)
+val Loss: 1.0807  Top-1 Acc: 0.7525 (1505.0/2000) Top-5 Acc: 0.9005 (1801.0/2000)
+
+Epoch 19/19
+----------
+train Loss: 1.2021  Top-1 Acc: 0.7279 (67790.0/93134) Top-5 Acc: 0.8614 (80223.0/93134)
+val Loss: 1.0785  Top-1 Acc: 0.7515 (1503.0/2000) Top-5 Acc: 0.9025 (1805.0/2000)
+
+Training complete in 357m 57s
+Best val Acc: 0.758000
