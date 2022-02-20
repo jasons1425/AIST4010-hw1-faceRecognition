@@ -12,8 +12,7 @@ import re
 DATA_DIR = r'D:\Documents\datasets\AIST4010\face recognition'
 TRAIN_FILES = os.path.join(DATA_DIR, 'train')
 VAL_FILES = os.path.join(DATA_DIR, 'val')
-TEST_FILES = glob.glob(os.path.join(DATA_DIR, 'test', '*'))
-TEST_FILES.sort(key=lambda fp: int(re.match(r'^.*\\(\d+).jpg$', fp).group(1)))
+TEST_FILES = os.path.join(DATA_DIR, 'test', '*')
 
 
 # augmentation settings
@@ -46,18 +45,27 @@ class FaceDataset(Dataset):
         return self.data
 
 
-test_imgs = [None] * len(TEST_FILES)
-test_img_ids = [None] * len(TEST_FILES)
-for idx, img_fp in enumerate(TEST_FILES):
-    img_id = re.match(r'^.*\\(\d+).jpg$', img_fp).group(1) + '.jpg'
-    with Image.open(img_fp) as f:
-        test_imgs[idx] = f.convert("RGB")
-    test_img_ids[idx] = img_id
+# load the test images one by one
+def load_imgs(fp=TEST_FILES):
+    fp = glob.glob(os.path.join(fp, '*'))
+    rematch_pattern = r'^.*' + os.sep.replace('\\', '\\\\') + r'(\d+).jpg$'
+    fp.sort(key=lambda fp: int(re.match(rematch_pattern, fp).group(1)))
+    test_imgs = [None] * len(fp)
+    test_img_ids = [None] * len(fp)
+    for idx, img_fp in enumerate(fp):
+        img_id = re.match(rematch_pattern, img_fp).group(1) + '.jpg'
+        with Image.open(img_fp) as f:
+            test_imgs[idx] = f.convert("RGB")
+        test_img_ids[idx] = img_id
+    return test_imgs, test_img_ids
+
+
+test_imgs, test_img_ids = load_imgs(TEST_FILES)
 
 
 # the below objects are expected to be imported in model
 # train dataset
-def get_ds(phase, transformation=None):
+def get_ds(phase, transformation=None, test_imgs_fp=None):
     if transformation is None:
         transformation = augmentation_train if phase == "train" else augmentation_test
         transformation = transformation(CROP_SIZE, ORIGIN_SIZE)
@@ -76,8 +84,13 @@ def get_ds(phase, transformation=None):
         val_ds.class_to_idx = dict([(str(i), i) for i in range(len(class_to_idx_dict))])
         return val_ds
     if phase == 'test':
-        test_ds = FaceDataset(test_imgs,
-                              img_id=test_img_ids,
+        if test_imgs_fp:
+            imgs, img_ids = load_imgs(test_imgs_fp)
+        else:
+            imgs = test_imgs
+            img_ids = test_img_ids
+        test_ds = FaceDataset(imgs,
+                              img_id=img_ids,
                               transform=transformation)
         return test_ds
     raise NotImplementedError('Unknown phase!')
