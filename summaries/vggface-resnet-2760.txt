@@ -1,0 +1,119 @@
+vggface-resnet 2,2,3,3,3
+augmentation + randomErasing (adjusted erase settings) without preprocessing
+epoch = 20
+BATCH_SIZE=32
+CROP_SIZE=48, IMG_RESIZE=224
+SGD optimizer, lr=0.001, momentum=0.9, weight_decay=0.01
+
+11.1s 1 /opt/conda/lib/python3.7/site-packages/papermill/iorw.py:50: FutureWarning: pyarrow.HadoopFileSystem is deprecated as of 2.0.0, please use pyarrow.fs.HadoopFileSystem instead.
+11.1s 2 from pyarrow import HadoopFileSystem
+66.6s 3 Epoch 0/19
+66.6s 4 ----------
+1631.2s 5 train Loss: 7.5888  Top-1 Acc: 0.0020 (184.0/93134) Top-5 Acc: 0.0092 (854.0/93134)
+1684.3s 6 val Loss: 6.9825  Top-1 Acc: 0.0015 (3.0/2000) Top-5 Acc: 0.0060 (12.0/2000)
+1684.3s 7 
+1684.3s 8 Epoch 1/19
+1684.3s 9 ----------
+2910.7s 10 train Loss: 6.7620  Top-1 Acc: 0.0048 (451.0/93134) Top-5 Acc: 0.0201 (1869.0/93134)
+2956.5s 11 val Loss: 6.6633  Top-1 Acc: 0.0040 (8.0/2000) Top-5 Acc: 0.0220 (44.0/2000)
+2956.5s 12 
+2956.5s 13 Epoch 2/19
+2956.5s 14 ----------
+4184.9s 15 train Loss: 6.2524  Top-1 Acc: 0.0141 (1312.0/93134) Top-5 Acc: 0.0533 (4967.0/93134)
+4230.7s 16 val Loss: 6.0779  Top-1 Acc: 0.0220 (44.0/2000) Top-5 Acc: 0.0660 (132.0/2000)
+4230.7s 17 
+4230.7s 18 Epoch 3/19
+4230.7s 19 ----------
+5487.8s 20 train Loss: 5.8969  Top-1 Acc: 0.0271 (2524.0/93134) Top-5 Acc: 0.0923 (8599.0/93134)
+5535.9s 21 val Loss: 5.8695  Top-1 Acc: 0.0305 (61.0/2000) Top-5 Acc: 0.0960 (192.0/2000)
+5535.9s 22 
+5535.9s 23 Epoch 4/19
+5535.9s 24 ----------
+6813.6s 25 train Loss: 5.6167  Top-1 Acc: 0.0419 (3904.0/93134) Top-5 Acc: 0.1316 (12261.0/93134)
+6861.3s 26 val Loss: 5.5740  Top-1 Acc: 0.0590 (118.0/2000) Top-5 Acc: 0.1495 (299.0/2000)
+6861.3s 27 
+6861.3s 28 Epoch 5/19
+6861.3s 29 ----------
+8141.7s 30 train Loss: 5.3720  Top-1 Acc: 0.0601 (5594.0/93134) Top-5 Acc: 0.1692 (15759.0/93134)
+8190.4s 31 val Loss: 5.3182  Top-1 Acc: 0.0600 (120.0/2000) Top-5 Acc: 0.1850 (370.0/2000)
+8190.4s 32 
+8190.4s 33 Epoch 6/19
+8190.4s 34 ----------
+9474.8s 35 train Loss: 5.1585  Top-1 Acc: 0.0746 (6945.0/93134) Top-5 Acc: 0.2065 (19236.0/93134)
+9523.2s 36 val Loss: 5.1895  Top-1 Acc: 0.0745 (149.0/2000) Top-5 Acc: 0.2060 (412.0/2000)
+9523.2s 37 
+9523.2s 38 Epoch 7/19
+9523.2s 39 ----------
+10795.8s 40 train Loss: 4.9450  Top-1 Acc: 0.0954 (8882.0/93134) Top-5 Acc: 0.2427 (22604.0/93134)
+10843.4s 41 val Loss: 4.8963  Top-1 Acc: 0.1070 (214.0/2000) Top-5 Acc: 0.2640 (528.0/2000)
+10843.4s 42 
+10843.4s 43 Epoch 8/19
+10843.4s 44 ----------
+12104.6s 45 train Loss: 4.7514  Top-1 Acc: 0.1142 (10639.0/93134) Top-5 Acc: 0.2795 (26031.0/93134)
+12151.3s 46 val Loss: 4.6841  Top-1 Acc: 0.1265 (253.0/2000) Top-5 Acc: 0.3030 (606.0/2000)
+12151.3s 47 
+12151.3s 48 Epoch 9/19
+12151.3s 49 ----------
+13402.6s 50 train Loss: 4.5939  Top-1 Acc: 0.1307 (12174.0/93134) Top-5 Acc: 0.3074 (28633.0/93134)
+13450.5s 51 val Loss: 4.4931  Top-1 Acc: 0.1370 (274.0/2000) Top-5 Acc: 0.3255 (651.0/2000)
+13450.5s 52 
+13450.5s 53 Epoch 10/19
+13450.5s 54 ----------
+14713.0s 55 train Loss: 4.4456  Top-1 Acc: 0.1482 (13807.0/93134) Top-5 Acc: 0.3359 (31282.0/93134)
+14760.5s 56 val Loss: 4.4236  Top-1 Acc: 0.1560 (312.0/2000) Top-5 Acc: 0.3615 (723.0/2000)
+14760.5s 57 
+14760.5s 58 Epoch 11/19
+14760.5s 59 ----------
+16027.3s 60 train Loss: 4.3196  Top-1 Acc: 0.1650 (15365.0/93134) Top-5 Acc: 0.3624 (33750.0/93134)
+16075.2s 61 val Loss: 4.3750  Top-1 Acc: 0.1605 (321.0/2000) Top-5 Acc: 0.3665 (733.0/2000)
+16075.2s 62 
+16075.2s 63 Epoch 12/19
+16075.2s 64 ----------
+17350.6s 65 train Loss: 4.2147  Top-1 Acc: 0.1766 (16448.0/93134) Top-5 Acc: 0.3778 (35188.0/93134)
+17398.8s 66 val Loss: 4.1111  Top-1 Acc: 0.1985 (397.0/2000) Top-5 Acc: 0.4060 (812.0/2000)
+17398.8s 67 
+17398.8s 68 Epoch 13/19
+17398.8s 69 ----------
+18649.6s 70 train Loss: 4.1216  Top-1 Acc: 0.1890 (17601.0/93134) Top-5 Acc: 0.3970 (36975.0/93134)
+18697.5s 71 val Loss: 4.1043  Top-1 Acc: 0.2015 (403.0/2000) Top-5 Acc: 0.4030 (806.0/2000)
+18697.5s 72 
+18697.5s 73 Epoch 14/19
+18697.5s 74 ----------
+19954.6s 75 train Loss: 4.0443  Top-1 Acc: 0.1976 (18406.0/93134) Top-5 Acc: 0.4118 (38351.0/93134)
+20002.1s 76 val Loss: 4.0056  Top-1 Acc: 0.2010 (402.0/2000) Top-5 Acc: 0.4295 (859.0/2000)
+20002.1s 77 
+20002.1s 78 Epoch 15/19
+20002.1s 79 ----------
+21253.0s 80 train Loss: 3.9586  Top-1 Acc: 0.2115 (19699.0/93134) Top-5 Acc: 0.4285 (39910.0/93134)
+21298.6s 81 val Loss: 3.8133  Top-1 Acc: 0.2345 (469.0/2000) Top-5 Acc: 0.4665 (933.0/2000)
+21298.6s 82 
+21298.6s 83 Epoch 16/19
+21298.6s 84 ----------
+22513.9s 85 train Loss: 3.8893  Top-1 Acc: 0.2214 (20622.0/93134) Top-5 Acc: 0.4421 (41178.0/93134)
+22559.9s 86 val Loss: 3.7992  Top-1 Acc: 0.2475 (495.0/2000) Top-5 Acc: 0.4750 (950.0/2000)
+22559.9s 87 
+22559.9s 88 Epoch 17/19
+22559.9s 89 ----------
+23766.3s 90 train Loss: 3.8240  Top-1 Acc: 0.2315 (21556.0/93134) Top-5 Acc: 0.4558 (42447.0/93134)
+23812.2s 91 val Loss: 3.7588  Top-1 Acc: 0.2470 (494.0/2000) Top-5 Acc: 0.4705 (941.0/2000)
+23812.2s 92 
+23812.2s 93 Epoch 18/19
+23812.2s 94 ----------
+25017.5s 95 train Loss: 3.7569  Top-1 Acc: 0.2414 (22483.0/93134) Top-5 Acc: 0.4668 (43472.0/93134)
+25063.4s 96 val Loss: 3.8822  Top-1 Acc: 0.2115 (423.0/2000) Top-5 Acc: 0.4465 (893.0/2000)
+25063.4s 97 
+25063.4s 98 Epoch 19/19
+25063.4s 99 ----------
+26265.7s 100 train Loss: 3.7099  Top-1 Acc: 0.2482 (23119.0/93134) Top-5 Acc: 0.4759 (44319.0/93134)
+26311.5s 101 val Loss: 3.6408  Top-1 Acc: 0.2760 (552.0/2000) Top-5 Acc: 0.5005 (1001.0/2000)
+26311.5s 102 
+26311.5s 103 Training complete in 437m 25s
+26311.5s 104 Best val Acc: 0.276000
+26315.7s 105 /opt/conda/lib/python3.7/site-packages/traitlets/traitlets.py:2567: FutureWarning: --Exporter.preprocessors=["remove_papermill_header.RemovePapermillHeader"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.
+26315.7s 106 FutureWarning,
+26315.7s 107 [NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+26315.9s 108 [NbConvertApp] Writing 42521 bytes to __notebook__.ipynb
+26317.8s 109 /opt/conda/lib/python3.7/site-packages/traitlets/traitlets.py:2567: FutureWarning: --Exporter.preprocessors=["nbconvert.preprocessors.ExtractOutputPreprocessor"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.
+26317.8s 110 FutureWarning,
+26317.8s 111 [NbConvertApp] Converting notebook __notebook__.ipynb to html
+26318.5s 112 [NbConvertApp] Writing 393947 bytes to __results__.html
